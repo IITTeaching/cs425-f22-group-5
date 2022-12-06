@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
+const Axios = require('axios');
 
 const CustomerRegister = () => {
 
   const [fullnameReg, setFullnameReg] = useState('')
   const [passwordReg, setPasswordReg] = useState('')
   const [mailingaddressReg, setMaillingaddressReg] = useState('')
-  const [homebranchReg, setHomeBranchReg] = useState('')
+  const [branchReg, setHomeBranchReg] = useState('')
 
   const register = () => {
-    Axios.post("https://localhost3001/register", {
+    Axios.post('http://localhost:3001/register', {
       fullname: fullnameReg,
       password: passwordReg,
-      mailingaddress:mailingaddressReg,
+      mailingaddress: mailingaddressReg,
       branch: branchReg
 
     })
@@ -82,7 +83,7 @@ const CustomerRegister = () => {
            required 
            onChange = {(e) => {setPasswordReg(e.target.value);
            }}/>
-          <button onClick = {register} class="px-4 py-1.5 rounded-md shadow-lg bg-white font-medium text-gray-100 block hover:bg-gray-100 transition duration-300" type="submit">
+          <button onClick={register} class="px-4 py-1.5 rounded-md shadow-lg bg-white font-medium text-gray-100 block hover:bg-gray-100 transition duration-300" type="submit">
             <span id="login_process_state" class="hidden">Checking ...</span>
             <span id="login_default_state" className='text-black' >Login</span></button>
         </form>
