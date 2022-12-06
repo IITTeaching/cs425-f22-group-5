@@ -1,0 +1,1 @@
+/usr/lib64/postgresql-14/bin/postgres "-D" "."
