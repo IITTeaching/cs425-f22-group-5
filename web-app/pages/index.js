@@ -8,14 +8,17 @@ import CustomerRegister from '../components/CustomerRegister'
 
 export default function Home() {
   const [isShown, setIsShown] = useState(false);
-
+  const [isNotShown, setIsNotShown] = useState(true);
   const handleClick = event => {
     // 👇️ toggle shown state
     
 
     // 👇️ or simply set it to true
     setIsShown(true);
+    setIsNotShown(false);
   };
+
+  
   return (
     <div  className="bg-[#9c9c9c]">
      <div className="text-center  ">
@@ -28,12 +31,12 @@ export default function Home() {
     </div>
 
     <div class="mt-6 flex items-center justify-center gap-4">
-      <Link href = "" onClick={handleClick}>
-      <button href="#" class="transform rounded-md bg-indigo-600/95 px-5 py-3 font-medium text-white transition-colors hover:bg-indigo-700">Customer</button>
+      <Link href = "/CustomerLogin" >
+      <button href="#" class="transform rounded-md bg-[#9c9c9c] px-5 py-3 font-medium text-white transition-colors hover:bg-indigo-700">Customer</button>
 
       </Link>
      
-      <Link href = "" >
+      <Link href = "/EmployeeLogin"  >
       <button href="#" class="transform rounded-md border border-slate-200 px-5 py-3 font-medium text-slate-900 transition-colors hover:bg-slate-50"> Employee </button>
       </Link>
 
@@ -41,8 +44,8 @@ export default function Home() {
     </div>
 
    
-    {/* {isShown && <Login />} */}
-    {isShown && <CustomerRegister />}
+
+
 
   </div>
 </section>
