@@ -88,6 +88,9 @@ INSERT INTO employee(ssn, username, name, passwd, addr, branch, position, salary
 INSERT INTO employee(ssn, username, name, passwd, addr, branch, position, salary) 
     VALUES (234567890, 'shayan', 'Shayan Baig', 'p4ssw0rd', '3201 S State St', 191, 'TELLER', 78000);
 
+INSERT INTO account (account_owner, account_type, balance) VALUES (1, 'CHECKING', 98.90);
+INSERT INTO account (account_owner, account_type, balance) VALUES (1, 'SAVINGS', 909.09);
+
 
 
 
