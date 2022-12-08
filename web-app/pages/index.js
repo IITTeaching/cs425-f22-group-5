@@ -8,14 +8,17 @@ import CustomerRegister from '../components/CustomerRegister'
 
 export default function Home() {
   const [isShown, setIsShown] = useState(false);
-
+  const [isNotShown, setIsNotShown] = useState(true);
   const handleClick = event => {
     // 👇️ toggle shown state
     
 
     // 👇️ or simply set it to true
     setIsShown(true);
+    setIsNotShown(false);
   };
+
+  
   return (
     <div  className="bg-[#9c9c9c]">
      <div className="text-center  ">
@@ -41,8 +44,8 @@ export default function Home() {
     </div>
 
    
-    {/* {isShown && <Login />} */}
-    {isShown && <CustomerRegister />}
+
+
 
   </div>
 </section>

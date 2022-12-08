@@ -15,17 +15,22 @@ db.connect((err) => {
 })
 
 app.post('/register', (req,res) => {
-    console.log("bitchass")
+    console.log("post called")
     const fullname = req.body.fullname
+    const username = req.body.username
     const password = req.body.password
     const mailingaddress = req.body.mailingaddress
     const branch = req.body.branch  // branch is to be entered as an ID
-    db.query("INSERT INTO customer(name, passwd, addr, branch) VALUES($1,$2,$3,$4);",
-    [fullname,password,mailingaddress,branch],
+    db.query("INSERT INTO customer(name, username, passwd, addr, branch) VALUES($1,$2,$3,$4,$5);",
+    [fullname,username,password,mailingaddress,branch],
     (err,result) => {
         console.log(err);
     }
     )
+})
+
+app.post('/login', (req,res) => {
+    console.log("TODO: Login")
 })
 
 app.listen(3001, () => {
