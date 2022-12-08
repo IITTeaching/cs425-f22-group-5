@@ -80,14 +80,14 @@ INSERT INTO branch (addr, branch_id, name)
 INSERT INTO branch (addr, branch_id, name)
     VALUES ('5259 S Dorchester Ave', 191, 'South Side');
 
+INSERT INTO customer(username, name, passwd, addr, branch) 
+    VALUES ('charles', 'Charles Saineghi', 'password', '10 W 33rd St', 141);
 
--- INSERT INTO customer(username, name, passwd, addr, branch) 
---     VALUES ('charles', 'Charles Saineghi', 'password', '10 W 33rd St', 141);
--- INSERT INTO customer(username, name, passwd, addr, branch) 
---     VALUES ('kaya', 'Kaya Jones', 'pa55word', '10 W 35th St', 151);
--- INSERT INTO customer(username, name, passwd, addr, branch) 
---     VALUES ('shayan', 'Shayan Baig', 'p4ssw0rd', '3201 S State St', 191);
+INSERT INTO employee(ssn, username, name, passwd, addr, branch, position, salary) 
+    VALUES (123456789, 'kaya', 'Kaya Jones', 'pa55word', '10 W 35th St', 151, 'TELLER', 72000);
+INSERT INTO employee(ssn, username, name, passwd, addr, branch, position, salary) 
+    VALUES (234567890, 'shayan', 'Shayan Baig', 'p4ssw0rd', '3201 S State St', 191, 'TELLER', 78000);
 
-SELECT * FROM customer;
+
 
 
