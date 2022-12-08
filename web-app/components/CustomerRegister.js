@@ -5,6 +5,7 @@ const Axios = require('axios');
 const CustomerRegister = () => {
 
   const [fullnameReg, setFullnameReg] = useState('')
+  const [usernameReg, setUsernameReg] = useState('')
   const [passwordReg, setPasswordReg] = useState('')
   const [mailingaddressReg, setMaillingaddressReg] = useState('')
   const [branchReg, setHomeBranchReg] = useState('')
@@ -12,6 +13,7 @@ const CustomerRegister = () => {
   const register = () => {
     Axios.post('http://localhost:3001/register', {
       fullname: fullnameReg,
+      username: usernameReg,
       password: passwordReg,
       mailingaddress: mailingaddressReg,
       branch: branchReg
@@ -71,7 +73,7 @@ const CustomerRegister = () => {
           }}
           />
 
-<label class="text-sm font-medium text-white">Home Branch</label>
+          <label class="text-sm font-medium text-white">Home Branch</label>
           <input class="mb-3 px-2 py-1.5
           mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
           focus:outline-none
@@ -84,6 +86,21 @@ const CustomerRegister = () => {
           onChange = {(e) => {setHomeBranchReg(e.target.value);
           }}
           required />
+
+          <label class="text-sm font-medium text-white">Username</label>
+          <input class="mb-3 px-2 py-1.5
+          mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+          focus:outline-none
+          focus:border-sky-500
+          focus:ring-1
+          focus:ring-sky-500
+          focus:invalid:border-red-500 focus:invalid:ring-red-500" 
+          type="text" name="username" 
+          placeholder="username" 
+          onChange = {(e) => {setUsernameReg(e.target.value);
+          }}
+          required />
+
           <label class="text-sm font-medium text-white">Password</label>
           <input class="
           mb-3 mt-1 block w-full px-2 py-1.5 border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
