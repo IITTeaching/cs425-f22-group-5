@@ -65,7 +65,7 @@ CREATE TABLE loan (
     rate            NUMERIC(4,2)
 );
 
-CREATE TYPE trans_t AS ENUM ('DEPOSIT', 'WITHDRAWAL');
+CREATE TYPE trans_t AS ENUM ('DEPOSIT', 'WITHDRAWAL', 'TRANSFER');
 
 CREATE TABLE transactions (
     trans_type      trans_t,
