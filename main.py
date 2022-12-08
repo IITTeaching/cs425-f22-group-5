@@ -71,7 +71,7 @@ def main():
     c = conn.cursor()
     loggedInAs = None # <--- this will be a tuple: (user_type, user_id) where user_id is the primary key in table user_type
     print("Welcome to the banking system!")
-    
+
     while not loggedInAs:
         print("Enter 1 to login, or 2 to register a new user account.")
         i = input(">>> ")
@@ -80,8 +80,28 @@ def main():
         elif i == 2:
             register()
     
-    # TODO: when logged in, use loggedInAs to validate actions
-        
+    if loggedInAs[0] == 'customer':
+        while(True):
+            print("Please select from the following: ")
+            print("1.) View account info")
+            print("2.) Deposit into an account")
+            print("3.) Withdraw from an account")
+            print("4.) Create a new account")
+            print("Enter anything else to exit")
+            i = input(">>> ")
+            if i == 1:
+                pass # TODO do a query and make it pretty
+            elif i == 2:
+                pass # call deposit()
+            elif i == 3:
+                pass # call withdrawal()
+            elif i == 4:
+                pass # uhhh
+            else:
+                break
+
+    elif loggedInAs[0] == 'employee':
+        pass
 
     conn.close()
     
