@@ -1,5 +1,5 @@
 import psycopg2 as pg
-import getpass
+import getpass as gp
 
 conn = pg.connect("dbname=postgres user=postgres password=admin")
 
@@ -7,8 +7,8 @@ def cust_login(): # will return customer id on successful login
     c = conn.cursor()
     for _ in range(3):
         uname = input("Username >>> ")
-        passwd = input("Password >>> ")
-        c.execute("SELECT (username, passwd, customer_id) FROM customer WHERE username = %s;", (uname))
+        passwd = gp.getpass(prompt="Password >>> ", stream=None)
+        c.execute("SELECT username, passwd, customer_id FROM customer WHERE username = %s;", (uname,))
         query = c.fetchone()
         if not query:
             print("Invalid username.")
@@ -47,8 +47,8 @@ def register():
     fname = input("Please enter your full name >>> ")
     uname = input("Username >>> ")
     while True:
-        passwd = input(prompt="Password >>> ", stream=None)
-        passwdconf = getpass(prompt="Confirm password >>> ", stream=None)
+        passwd = gp.getpass(prompt="Password >>> ", stream=None)
+        passwdconf = gp.getpass(prompt="Confirm password >>> ", stream=None)
         if passwd != passwdconf:
             print("Passwords do not match...")
         else:
@@ -57,7 +57,7 @@ def register():
     addr = input("Enter your address >>> ")
     branch = input("Enter the three-digit pin associated with your home branch >>> ")
     c = conn.cursor()
-    c.execute("INSERT INTO customer (username, name, passwd, addr, branch) values (%s, %s, %s, %s, %s)",
+    c.execute("INSERT INTO customer username, name, passwd, addr, branch values (%s, %s, %s, %s, %s)",
      (uname, fname, passwd, addr, branch))
     c.close()
 
