@@ -62,6 +62,18 @@ def register():
 
 def deposit(acc_num, user_id):
     pass # TODO: Validate account number with user; Prompt for amount and adjust balance
+    amount = input("Enter the amount you want to deposit:")
+    ac = input("Enter your account number:")
+    a = 'select balance from account where  account_num=%s' ## might have to edit this
+    data = (ac,)
+    c=conn.cursor()
+    c.execute(a,data)
+    result = c.fetchone()
+    t =result[0] + amount
+    sql = ('update amount set balance where account_num=%s')
+    d=(t,ac)
+    c.execute(sql,d)
+    c.commit()
 
 def withdrawal(acc_num, user_id):
     pass # TODO
