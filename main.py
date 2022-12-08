@@ -25,18 +25,18 @@ def cust_login(): # will return customer id on successful login
     
 
 def emp_login():
-    pass # TODO
+    pass # TODO basically same as cust_login
 
-def login(): # will return username of the person logged in
+def login(): # will return user_id of the person logged in
     while(True):
         print("Are you logging in as a...")
         print("1.) Customer")
         print("2.) Employee")
         usertype = input(">>> ")
         if usertype == 1:
-            return cust_login()
+            return ('customer', cust_login())
         elif usertype == 2:
-            return emp_login()
+            return ('employee', emp_login())
         else:
             print("Invalid input.")
         
@@ -60,18 +60,31 @@ def register():
      (uname, fname, passwd, addr, branch))
     c.close()
 
+def deposit(acc_num, user_id):
+    pass # TODO: Validate account number with user; Prompt for amount and adjust balance
+
+def withdrawal(acc_num, user_id):
+    pass # TODO
+
 
 def main():
     c = conn.cursor()
-    c.execute("SELECT * FROM customer;")
-    print(c.fetchone())
+    loggedInAs = None # <--- this will be a tuple: (user_type, user_id) where user_id is the primary key in table user_type
+    print("Welcome to the banking system!")
+    
+    while not loggedInAs:
+        print("Enter 1 to login, or 2 to register a new user account.")
+        i = input(">>> ")
+        if i == 1:
+            loggedInAs = login()
+        elif i == 2:
+            register()
+    
+    # TODO: when logged in, use loggedInAs to validate actions
+        
+
     conn.close()
     
-
-
-
-
-
 
 if __name__ == "__main__":
     main()
