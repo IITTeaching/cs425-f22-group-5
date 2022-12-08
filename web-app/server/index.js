@@ -27,7 +27,30 @@ app.post('/register', (req,res) => {
         console.log(err);
     }
     )
-})
+});
+
+app.post('/login', (req, res) => {
+  const fullname = req.body.fullname;
+  const password = req.body.password;
+
+  db.query(
+    "SELECT * FROM customer WHERE name = ? AND passwd = ?",
+    [fullname,password,mailingaddress,branch],
+    (err,result) => {
+    if (err) {
+      res.send({err:err})
+      console.log(err);
+    }
+    if (result) {
+      res.send(result);
+    } else {
+      res.send({message: "Wrong username/password combination!"})
+    }
+  }
+
+  )
+
+});
 
 app.post('/login', (req,res) => {
     console.log("TODO: Login")

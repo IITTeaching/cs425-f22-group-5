@@ -1,6 +1,12 @@
 import React, { useState } from 'react'
 import Login from './Login';
-const Axios = require('axios');
+import Axios from 'axios';
+const app = express();
+const express = require('express');
+
+
+
+
 
 const CustomerRegister = () => {
 
@@ -10,14 +16,21 @@ const CustomerRegister = () => {
   const [mailingaddressReg, setMaillingaddressReg] = useState('')
   const [branchReg, setHomeBranchReg] = useState('')
 
+  const [fullname, setFullname] = useState('')
+  const [password, setPassword] = useState('')
+  const [mailingaddress, setMaillingaddress] = useState('')
+  const [branch, setHomeBranch] = useState('')
+
   const register = () => {
-    Axios.post('http://localhost:3001/register', {
+    app.post('http://localhost:3000/dashboard', {
       fullname: fullnameReg,
       username: usernameReg,
       password: passwordReg,
       mailingaddress: mailingaddressReg,
       branch: branchReg
 
+    }).then((response) => {
+      console.log(response)
     })
   }
 
@@ -38,7 +51,7 @@ const CustomerRegister = () => {
      
       {isNotShown && 
 
-        <form id="login_form" action="api_login" method="POST" class="flex flex-col justify-center" >
+        <form id="login_form" class="flex flex-col justify-center" >
                  <div class=" items-center justify-center text-4xl font-black text-white m-3">
                  <h1 class=" text-center ">Customer Sign up </h1>
 

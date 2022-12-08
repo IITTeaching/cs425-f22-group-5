@@ -20,7 +20,7 @@ export default function Home() {
 
   
   return (
-    <div  className="bg-[#9c9c9c]">
+    <div  className="">
      <div className="text-center  ">
       
         
