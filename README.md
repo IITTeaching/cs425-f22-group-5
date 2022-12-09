@@ -2,6 +2,7 @@
 
 Group members: Charles Saineghi, Kaya Jones, Shayan Baig
 
+Ignore the web-app branch, the entirety of the project is within **init_db.sql** and **main.py**.
 To run our project, first initialize the database with postgres (as the target data source/schema) and run the init_db.sql file
 
 Then in a python console, run: 
