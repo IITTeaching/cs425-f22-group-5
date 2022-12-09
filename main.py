@@ -100,33 +100,17 @@ def view_accounts(user_id):
     c = conn.cursor()
     c.execute("SELECT * FROM account WHERE account_owner = %s", (user_id,))
     query = c.fetchall()
+    if not query:
+        print("")
+        print("You currently have no accounts.")
+        print("")
+        return
     print("")
     for x in query:
         print("Account Number: ", x[1])
         print("Account Type: ", x[2])
         print("Balance: ", x[3])
         print("")
-
-def view_account(user_id):
-    c = conn.cursor()
-    while (True):
-        try:
-            acc = int(input("Please enter the account number >>> "))
-            c.execute("SELECT * FROM account WHERE account_num = %s", (acc,))
-            query = c.fetchone()
-            if not query:
-                print("Invalid account number")
-                break
-            else:
-                print("")
-                for x in query:
-                    print("Account Number: ", x[1])
-                    print("Account Type: ", x[2])
-                    print("Balance: ", x[3])
-                    print("")
-
-        except TypeError:
-            print("Please enter a number.")
     
 
 def deposit(user_id):
@@ -178,21 +162,18 @@ def main():
         while(True):
             print("Please select from the following: ")
             print("1.) View accounts")
-            print("2.) View account info")
-            print("3.) Deposit into an account")
-            print("4.) Withdraw from an account")
-            print("5.) Create a new account")
+            print("2.) Deposit into an account")
+            print("3.) Withdraw from an account")
+            print("4.) Create a new account")
             print("Enter anything else to exit")
             i = input(">>> ")
             if i == '1':
                 view_accounts(loggedInAs[1])
             elif i == '2':
-                view_account(loggedInAs[1])
-            elif i == '3':
                 deposit(loggedInAs[1])
-            elif i == '4':
+            elif i == '3':
                 withdrawal(loggedInAs[1])
-            elif i == '5':
+            elif i == '4':
                 create_account(loggedInAs[1])
             else:
                 break
