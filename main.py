@@ -122,7 +122,8 @@ def deposit(user_id):
     c=conn.cursor()
     c.execute(a,data)
     result = c.fetchone()
-    t =result[0] + amount
+    t =float(result[0]) + int(amount)
+    print(t)
     sql = ('update amount set balance where account_num=%s')
     d=(t,ac)
     c.execute(sql,d)
@@ -137,11 +138,11 @@ def withdrawal(user_id):
     c=conn.cursor()
     c.execute(a,data)
     result = c.fetchone()
-    t =result[0] - amount
+    t =float(result[0]) - int(amount)
     sql = ('update amount set balance where account_num=%s')
     d=(t,ac)
     c.execute(sql,d)
-    c.commit()
+    c.commit() 
 
 
 def main():
