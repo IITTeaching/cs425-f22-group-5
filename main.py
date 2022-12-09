@@ -114,7 +114,6 @@ def view_accounts(user_id):
     
 
 def deposit(user_id):
-    pass # TODO: Validate account number with user; Prompt for amount and adjust balance
     amount = input("Enter the amount you want to deposit:")
     ac = input("Enter your account number:")
     a = 'select balance from account where  account_num=%s' ## might have to edit this
@@ -123,14 +122,13 @@ def deposit(user_id):
     c.execute(a,data)
     result = c.fetchone()
     t =float(result[0]) + int(amount)
-    print(t)
+    print("New Balance: ", t)
     sql = ('update account set balance=%s where account_num=%s')
     d=(t,ac)
     c.execute(sql,d)
     conn.commit()
 
 def withdrawal(user_id):
-    pass # TODO: Validate account number with user; Prompt for amount and adjust balance
     amount = input("Enter the amount you want to withdraw:")
     ac = input("Enter your account number:")
     a = 'select balance from account where  account_num=%s' ## might have to edit this
@@ -139,6 +137,7 @@ def withdrawal(user_id):
     c.execute(a,data)
     result = c.fetchone()
     t =float(result[0]) - int(amount)
+    print("New Balance: ", t)
     sql = ('update account set balance=%s where account_num=%s')
     d=(t,ac)
     c.execute(sql,d)
@@ -159,7 +158,6 @@ def main():
             register()
     
     if loggedInAs[0] == 'customer':
-        c = conn.cursor()
         while(True):
             print("Please select from the following: ")
             print("1.) View accounts")
@@ -189,11 +187,38 @@ def main():
             print("Enter anything else to exit")
             i = input(">>> ")
             if i == '1':
-                pass # TODO do a query and make it pretty
+                acc = int(input("Enter an account number to view >>> "))
+                c.execute("SELECT * FROM account,customer WHERE account_num = %s", (acc,))
+                x = c.fetchone()
+                print(x)
+                if not x:
+                    print("Invalid account number.")
+                else:
+                    print("Account Holder: ", x[6])
+                    print("Account username: ", x[5])
+                    print("User ID: ", x[4])
+                    print("Associated Branch: ", x[9])
+                    print("Account Number: ", x[1])
+                    print("Account Type: ", x[2])
+                    print("Balance: ", x[3])
+                    print("")
+                
             elif i == '2':
-                pass # call deposit() AND ask for account number
+                uid = input("Enter an associated user ID >>> ")
+                c.execute("SELECT * FROM customer WHERE account_num = %s", (uid,))
+                x = c.fetchone()
+                if not x:
+                    print("Invalid UID")
+                else:
+                    deposit(uid)
             elif i == '3':
-                pass # call withdrawal() AND ask for account number
+                uid = input("Enter an associated user ID >>> ")
+                c.execute("SELECT * FROM customer WHERE account_num = %s", (uid,))
+                x = c.fetchone()
+                if not x:
+                    print("Invalid UID")
+                else:
+                    withdrawal(uid)
             elif i == '4':
                 pass # uhhh
             else:
