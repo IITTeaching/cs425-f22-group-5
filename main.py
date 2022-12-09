@@ -124,10 +124,10 @@ def deposit(user_id):
     result = c.fetchone()
     t =float(result[0]) + int(amount)
     print(t)
-    sql = ('update amount set balance where account_num=%s')
+    sql = ('update account set balance=%s where account_num=%s')
     d=(t,ac)
     c.execute(sql,d)
-    c.commit()
+    conn.commit()
 
 def withdrawal(user_id):
     pass # TODO: Validate account number with user; Prompt for amount and adjust balance
