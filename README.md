@@ -1,5 +1,6 @@
 # Fall 2022, CS425 Group 5 Bank Database and Implementation
 
+Group members: Charles Saineghi, Kaya Jones, Shayan Baig
 To run our project, first initialize the database with postgres (as the target data source/schema) and run the init_db.sql file
 
 Then in a python console, run: 
