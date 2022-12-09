@@ -95,6 +95,19 @@ def create_account(user_id):
         else:
             return
     
+def delete_account(user_id):
+    ac = input("Enter your account number:")
+    sql1 = "delete from account where account_num=%s"
+    sql2 = "delete from account where account_num=%s"
+    data = (ac,)
+    c = conn.cursor()
+    c.execute(sql1, data)
+    c.execute(sql2, data)
+    print("account " + ac + "has been deleted")
+
+    conn.commit()
+    
+
 
 def view_accounts(user_id):
     c = conn.cursor()
@@ -116,7 +129,7 @@ def view_accounts(user_id):
 def deposit(user_id):
     amount = input("Enter the amount you want to deposit:")
     ac = input("Enter your account number:")
-    a = 'select balance from account where  account_num=%s' ## might have to edit this
+    a = 'select balance from account where  account_num=%s'
     data = (ac,)
     c=conn.cursor()
     c.execute(a,data)
@@ -164,6 +177,7 @@ def main():
             print("2.) Deposit into an account")
             print("3.) Withdraw from an account")
             print("4.) Create a new account")
+            print("5.) Delete a  account")
             print("Enter anything else to exit")
             i = input(">>> ")
             if i == '1':
@@ -174,6 +188,8 @@ def main():
                 withdrawal(loggedInAs[1])
             elif i == '4':
                 create_account(loggedInAs[1])
+            elif i == '5':
+                delete_account(loggedInAs[1])
             else:
                 break
 
