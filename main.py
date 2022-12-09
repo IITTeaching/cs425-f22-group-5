@@ -85,11 +85,13 @@ def create_account(user_id):
         print("Press anything else to abort.")
         t = input(">>> ")
         if t == '1':
-            c.execute("INSERT INTO account (account_owner, account_type, balance) VALUES (%s, 'CHECKING', 0)", (user_id))
+            c.execute("INSERT INTO account (account_owner, account_type, balance) VALUES (%s, 'CHECKING', 0)", (user_id,))
             conn.commit()
+            break
         elif t == '2':
-            c.execute("INSERT INTO account (account_owner, account_type, balance) VALUES (%s, 'SAVINGS', 0)", (user_id))
+            c.execute("INSERT INTO account (account_owner, account_type, balance) VALUES (%s, 'SAVINGS', 0)", (user_id,))
             conn.commit()
+            break
         else:
             return
     
@@ -97,7 +99,13 @@ def create_account(user_id):
 def view_accounts(user_id):
     c = conn.cursor()
     c.execute("SELECT * FROM account WHERE account_owner = %s", (user_id,))
-    print(c.fetchone())
+    query = c.fetchall()
+    print("")
+    for x in query:
+        print("Account Number: ", x[1])
+        print("Account Type: ", x[2])
+        print("Balance: ", x[3])
+        print("")
 
 def view_account(user_id):
     c = conn.cursor()
@@ -105,6 +113,18 @@ def view_account(user_id):
         try:
             acc = int(input("Please enter the account number >>> "))
             c.execute("SELECT * FROM account WHERE account_num = %s", (acc,))
+            query = c.fetchone()
+            if not query:
+                print("Invalid account number")
+                break
+            else:
+                print("")
+                for x in query:
+                    print("Account Number: ", x[1])
+                    print("Account Type: ", x[2])
+                    print("Balance: ", x[3])
+                    print("")
+
         except TypeError:
             print("Please enter a number.")
     
