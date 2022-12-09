@@ -1,4 +1,4 @@
-# cs425-f22-group-5
+# Fall 2022, CS425 Group 5 Bank Database and Implementation
 
 To run our project, first initialize the database with postgres (as the target data source/schema) and run the init_db.sql file
 
